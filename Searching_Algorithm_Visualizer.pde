@@ -1,31 +1,26 @@
 import g4p_controls.*;
 
+BoxList list;
+
 void setup() {
   int[] arr = {1, 4, 5, 7, 9, 10};
-  //println(binarySearch(arr, 3, 9));
-  size(600, 400);
+  println(binarySearch(arr, 0, arr.length-1, 9));
+  println(linearSearch(arr, 9));
+  list = new BoxList(5);
+  
+  size(750, 400);
+  rectMode(CENTER);
   createGUI();
 }
 
 void draw() {
   background(175);
+  textAlign(CENTER, CENTER);
+  
   fill(255);
   textSize(16);
-  text("Searching Algorithm Visualizer", 15, 25);
-}
-
-int binarySearch(int[] arr, int midIndex, int search) {
-  if (arr[midIndex] == search) {
-    return midIndex;
-  }
-  else if (arr[midIndex] > search) {
-    int[] newArr = subset(arr, 0, midIndex);
-    int newMidIndex = (0+midIndex)/2;
-    return binarySearch(newArr, newMidIndex, search);
-  }
-  else {
-    int[] newArr = subset(arr, midIndex, arr.length-1);
-    int newMidIndex = (arr.length+midIndex)/2;
-    return binarySearch(newArr, newMidIndex, search);
-  }
+  text("Searching Algorithm Visualizer", 135, 25); // Title
+  
+  textSize(18);
+  text("Searching Algorithm goes here", 375, 100);
 }
