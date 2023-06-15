@@ -1,12 +1,20 @@
 import g4p_controls.*;
 
 BoxList list;
+boolean isAnimating;
+
+int n = 15;
+int[] inputList = new int[n];
+String sortingAlgo;
 
 void setup() {
-  int[] arr = {1, 4, 5, 7, 9, 10};
-  println(binarySearch(arr, 0, arr.length-1, 9));
-  println(linearSearch(arr, 9));
-  list = new BoxList(5);
+  list = new BoxList(n);
+  
+  println(binarySearch(list.arr, 0, list.arr.length-1, list.searchValue));
+  println(linearSearch(list.arr, 9));
+  
+  isAnimating = false;
+  sortingAlgo = "Linear Search";
   
   size(750, 400);
   rectMode(CENTER);
@@ -22,5 +30,7 @@ void draw() {
   text("Searching Algorithm Visualizer", 135, 25); // Title
   
   textSize(18);
-  text("Searching Algorithm goes here", 375, 100);
+  text(sortingAlgo, 375, 100);
+  
+  list.displayBoxes();
 }
