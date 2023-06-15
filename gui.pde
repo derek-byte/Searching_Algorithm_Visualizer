@@ -39,6 +39,12 @@ public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:4382
   isAnimating = !isAnimating;
 } //_CODE_:button1:438206:
 
+public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:523852:
+  println("button2 - GButton >> GEvent." + event + " @ " + millis());
+  list.arr = list.generateRandomArray(list.n);
+  list.searchValue = list.getRandomValue(list.arr);
+} //_CODE_:button2:523852:
+
 
 
 // Create all the GUI controls. 
@@ -60,9 +66,12 @@ public void createGUI(){
   dropList1 = new GDropList(window1, 12, 11, 125, 80, 3, 10);
   dropList1.setItems(loadStrings("list_641869"), 0);
   dropList1.addEventHandler(this, "dropList1_click1");
-  button1 = new GButton(window1, 9, 200, 127, 30);
+  button1 = new GButton(window1, 11, 205, 125, 30);
   button1.setText("Play");
   button1.addEventHandler(this, "button1_click1");
+  button2 = new GButton(window1, 11, 163, 125, 30);
+  button2.setText("Shuffle");
+  button2.addEventHandler(this, "button2_click1");
   window1.loop();
 }
 
@@ -72,3 +81,4 @@ GWindow window1;
 GSlider slider1; 
 GDropList dropList1; 
 GButton button1; 
+GButton button2; 
