@@ -27,6 +27,9 @@ public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:398
 public void dropList1_click1(GDropList source, GEvent event) { //_CODE_:dropList1:641869:
   println("dropList1 - GDropList >> GEvent." + event + " @ " + millis());
   sortingAlgo = source.getSelectedText();
+  if (sortingAlgo.equals("Binary Search")) {
+    list.arr = mergeSort(list.arr, 0, n-1);
+  }
 } //_CODE_:dropList1:641869:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:438206:
@@ -59,7 +62,7 @@ public void createGUI(){
   window1.setActionOnClose(G4P.KEEP_OPEN);
   window1.addDrawHandler(this, "win_draw1");
   slider1 = new GSlider(window1, 11, 95, 125, 40, 10.0);
-  slider1.setLimits(15.0, 5.0, 100.0);
+  slider1.setLimits(15.0, 5.0, 25.0);
   slider1.setNumberFormat(G4P.DECIMAL, 2);
   slider1.setOpaque(false);
   slider1.addEventHandler(this, "slider1_change1");

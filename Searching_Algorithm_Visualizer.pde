@@ -8,13 +8,12 @@ int[] inputList = new int[n];
 String sortingAlgo;
 
 void setup() {
+  isAnimating = false;
+  sortingAlgo = "Linear Search";
   list = new BoxList(n);
   
   println(binarySearch(list.arr, 0, list.arr.length-1, list.searchValue));
   println(linearSearch(list.arr, 9));
-  
-  isAnimating = false;
-  sortingAlgo = "Linear Search";
   
   size(750, 400);
   rectMode(CENTER);
@@ -22,7 +21,7 @@ void setup() {
 }
 
 void draw() {
-  background(175);
+  background(125);
   textAlign(CENTER, CENTER);
   
   fill(255);
@@ -32,5 +31,7 @@ void draw() {
   textSize(18);
   text(sortingAlgo, 375, 100);
   
+  list.drawLegend();
   list.displayBoxes();
+  list.drawPointer();
 }
