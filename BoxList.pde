@@ -46,15 +46,36 @@ class BoxList {
     }
   }
   
-  void drawPointer() {
+  void drawPointer(int i) {
+    int containerWidth = width - 2*this.padding;
+    int boxWidth = containerWidth/this.n-3;
+    
+    textAlign(CENTER, CENTER);
+    
+    square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
+    
     noStroke();
     fill(255);
-    rect(120, 150, 15, 25);
-    triangle(105, 160, 135, 160, 120, 175);
+    // x=120
+    rect(boxWidth/2+(boxWidth+3)*i+this.padding, 150, 15, 25);
+    triangle(boxWidth/2+(boxWidth+3)*i+this.padding-15, 160, boxWidth/2+(boxWidth+3)*i+this.padding+15, 160, boxWidth/2+(boxWidth+3)*i+this.padding, 175);
   }
   
-  void animateLinearSearch(int[] arr, int currValue) {
+  void animateLinearSearch(int[] arr, int search) {
+    for (int i=0; i<arr.length; i++) {
+      displayBoxes();
+      drawPointer(i);
+      delay(500);
+      if (arr[i] == search) {
+        isAnimating = false;
+        break;
+        //return i;
+      }
+      println("HI");
+    }
+    //redraw();
     
+    //return -1;
   }
   
   void animateBinarySearch(int[] arr, int currValue, int midValue) {

@@ -1,9 +1,15 @@
 int linearSearch(int[] arr, int search) {
   for (int i=0; i<arr.length; i++) {
+    list.displayBoxes();
+    list.drawPointer(i);
+    delay(1000);
     if (arr[i] == search) {
+      isAnimating = false;
       return i;
     }
+    println("HI");
   }
+  redraw();
   
   return -1;
 }
