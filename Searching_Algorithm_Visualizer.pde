@@ -9,11 +9,15 @@ String sortingAlgo;
 
 int frameRate = 2;
 int i=0; 
+int totalComparisons;
+int indexFound;
 
 void setup() {
   isAnimating = false;
   sortingAlgo = "Linear Search";
   list = new BoxList(n);
+  
+  totalComparisons = 0;
     
   size(750, 400);
   rectMode(CENTER);
@@ -39,7 +43,7 @@ void draw() {
   fill(255);
   text(sortingAlgo, 375, 80);
   textSize(12);
-  text("Search Value:", 375, 100);
+  text("Search Value: " + list.searchValue, 375, 100);
   
   list.drawLegend();
   if (isAnimating && sortingAlgo.equals("Linear Search") && i< list.arr.length) {
@@ -47,9 +51,12 @@ void draw() {
     //println(linearSearch(list.arr, 9));
     if (list.arr[i] == list.searchValue) {
       isAnimating = false;
+      indexFound = i;
+      button1.setText("Play");
       //return i;
     }
     i++;
+    totalComparisons++;
     println("HI", i);
   }
   
@@ -66,8 +73,8 @@ void draw() {
   
   textSize(13);
   fill(255);
-  text("Total Comparisions:", 375, 335);
-  text("Index Found:", 375, 360);
+  text("Total Comparisions: " + totalComparisons, 375, 335);
+  text("Index Found: " + indexFound, 375, 360);
   
   fill(100);
   rect(715, 365, 35, 35);

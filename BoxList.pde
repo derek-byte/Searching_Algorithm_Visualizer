@@ -29,7 +29,7 @@ class BoxList {
       
       textSize(10);
       fill(255);
-      text(i, boxWidth/2+(boxWidth+3)*i+this.padding, 230);
+      text(i, boxWidth/2+(boxWidth+3)*i+this.padding, 205+boxWidth/1.75);
     }
   }
   

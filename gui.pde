@@ -36,10 +36,14 @@ public void dropList1_click1(GDropList source, GEvent event) { //_CODE_:dropList
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:438206:
   println("button1 - GButton >> GEvent." + event + " @ " + millis());
-  if (!isAnimating)
+  if (!isAnimating) {
     source.setText("Pause");
-  else 
+    i = 0;
+    totalComparisons = 0;
+    indexFound = -1;
+  } else {
     source.setText("Play");
+  }
     
   isAnimating = !isAnimating;
 } //_CODE_:button1:438206:
