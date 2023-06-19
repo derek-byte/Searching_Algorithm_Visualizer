@@ -68,7 +68,7 @@ public void createGUI(){
   window1.noLoop();
   window1.setActionOnClose(G4P.KEEP_OPEN);
   window1.addDrawHandler(this, "win_draw1");
-  slider1 = new GSlider(window1, 22, 98, 150, 40, 10.0);
+  slider1 = new GSlider(window1, 22, 102, 150, 40, 10.0);
   slider1.setLimits(15.0, 5.0, 25.0);
   slider1.setNumberFormat(G4P.DECIMAL, 2);
   slider1.setOpaque(false);

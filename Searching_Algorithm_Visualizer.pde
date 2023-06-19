@@ -24,6 +24,7 @@ void setup() {
 }
 
 void draw() {
+  noStroke();
   background(125);
   textAlign(CENTER, CENTER);
   
@@ -31,8 +32,14 @@ void draw() {
   textSize(16);
   text("Searching Algorithm Visualizer", 135, 25); // Title
   
+  fill(100);
+  rect(375, 90, 300, 70);
+  
   textSize(18);
-  text(sortingAlgo, 375, 100);
+  fill(255);
+  text(sortingAlgo, 375, 80);
+  textSize(12);
+  text("Search Value:", 375, 100);
   
   list.drawLegend();
   if (isAnimating && sortingAlgo.equals("Linear Search") && i< list.arr.length) {
@@ -53,4 +60,19 @@ void draw() {
   //list.animateLinearSearch(list.arr, 9);
   list.displayBoxes();
   //list.drawPointer();
+  
+  fill(100);
+  rect(375, 300, 750, 2);
+  
+  textSize(13);
+  fill(255);
+  text("Total Comparisions:", 375, 335);
+  text("Index Found:", 375, 360);
+  
+  fill(100);
+  rect(715, 365, 35, 35);
+  rect(665, 365, 35, 35);
+  fill(255);
+  text("?", 715, 362);
+  text("</>", 665, 362);
 }

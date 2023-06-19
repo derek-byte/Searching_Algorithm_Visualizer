@@ -17,15 +17,19 @@ class BoxList {
     int boxWidth = containerWidth/this.n-3;
     
     textAlign(CENTER, CENTER);
-    textSize(13);
     for (int i=0; i<n; i++) {
       if (this.arr[i] == this.searchValue) 
         fill(150);
       else
         fill(255);
+      textSize(13);
       square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
       fill(0);
       text(this.arr[i], boxWidth/2+(boxWidth+3)*i+this.padding, 200);
+      
+      textSize(10);
+      fill(255);
+      text(i, boxWidth/2+(boxWidth+3)*i+this.padding, 230);
     }
   }
   
@@ -54,7 +58,7 @@ class BoxList {
     
     square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
     
-    noStroke();
+    //noStroke();
     fill(255);
     // x=120
     rect(boxWidth/2+(boxWidth+3)*i+this.padding, 150, 15, 25);
