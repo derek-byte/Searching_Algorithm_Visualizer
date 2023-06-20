@@ -68,7 +68,7 @@ class BoxList {
     
     textAlign(CENTER, CENTER);
     
-    square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
+    //square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
     
     //noStroke();
     fill(255);
@@ -114,7 +114,8 @@ class BoxList {
   }
   
   int getRandomValue(int[] arr) {
-    int randomIndex = int(random(0, arr.length));
-    return arr[randomIndex];
+    int randomValue = int(random(0, arr.length));
+    searchValueInput.setText(str(arr[randomValue]));
+    return arr[randomValue];
   }
 }

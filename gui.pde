@@ -22,7 +22,7 @@ public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:398
   println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
   n = source.getValueI();
   list = new BoxList(n);
-  i = 0;
+  resetValues();
 } //_CODE_:slider1:398259:
 
 public void dropList1_click1(GDropList source, GEvent event) { //_CODE_:dropList1:641869:
@@ -38,9 +38,7 @@ public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:4382
   println("button1 - GButton >> GEvent." + event + " @ " + millis());
   if (!isAnimating) {
     source.setText("Pause");
-    i = 0;
-    totalComparisons = 0;
-    indexFound = -1;
+    resetValues();
   } else {
     source.setText("Play");
   }
@@ -52,14 +50,14 @@ public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:5238
   println("button2 - GButton >> GEvent." + event + " @ " + millis());
   list.arr = list.generateRandomArray(list.n);
   list.searchValue = list.getRandomValue(list.arr);
-  i = 0;
+  resetValues();
 } //_CODE_:button2:523852:
 
-public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:searchValue:391453:
+public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:searchValueInput:391453:
   println("searchValue - GTextField >> GEvent." + event + " @ " + millis());
   list.searchValue = int(source.getText());
   println(list.searchValue);
-} //_CODE_:searchValue:391453:
+} //_CODE_:searchValueInput:391453:
 
 
 
@@ -88,13 +86,13 @@ public void createGUI(){
   button2 = new GButton(window1, 23, 226, 150, 30);
   button2.setText("Shuffle");
   button2.addEventHandler(this, "button2_click1");
-  searchValue = new GTextField(window1, 22, 156, 150, 30, G4P.SCROLLBARS_NONE);
-  searchValue.setOpaque(true);
-  searchValue.addEventHandler(this, "textfield1_change1");
+  searchValueInput = new GTextField(window1, 22, 156, 150, 30, G4P.SCROLLBARS_NONE);
+  searchValueInput.setOpaque(true);
+  searchValueInput.addEventHandler(this, "textfield1_change1");
   label1 = new GLabel(window1, 22, 94, 80, 20);
   label1.setText("List Size");
   label1.setOpaque(false);
-  label2 = new GLabel(window1, 22, 135, 80, 20);
+  label2 = new GLabel(window1, 22, 135, 244, 20);
   label2.setText("Search Value");
   label2.setOpaque(false);
   window1.loop();
@@ -107,6 +105,6 @@ GSlider slider1;
 GDropList dropList1; 
 GButton button1; 
 GButton button2; 
-GTextField searchValue; 
+GTextField searchValueInput; 
 GLabel label1; 
 GLabel label2; 

@@ -16,7 +16,12 @@ boolean isWindowIncreased = false;
 String sideDisplay;
 int screenIncreaseVal = 200;
 
+int maxIndex;
+int minIndex;
+  
 void setup() {
+  createGUI();
+  
   isAnimating = false;
   sortingAlgo = "Linear Search";
   list = new BoxList(n);
@@ -26,11 +31,13 @@ void setup() {
     
   size(750, 400);
   rectMode(CENTER);
-  createGUI();
   
   frameRate(2);
   frame.setResizable(true);
   //noLoop();
+  
+  maxIndex = list.arr.length;
+  minIndex = 0;
 }
 
 void draw() {
@@ -38,20 +45,10 @@ void draw() {
   background(125);
   textAlign(CENTER, CENTER);
   
-  fill(255);
-  textSize(16);
-  text("Searching Algorithm Visualizer", 135, 25); // Title
-  
-  fill(100);
-  rect(375, 90, 300, 70);
-  
-  textSize(18);
-  fill(255);
-  text(sortingAlgo, 375, 80);
-  textSize(12);
-  text("Search Value: " + list.searchValue, 375, 100);
-  
+  createHeaders();
+  displayButtonEvents();
   list.drawLegend();
+  
   if (isAnimating && sortingAlgo.equals("Linear Search") && i< list.arr.length) {
     //println(binarySearch(list.arr, 0, list.arr.length-1, list.searchValue));
     //println(linearSearch(list.arr, 9));
@@ -64,41 +61,34 @@ void draw() {
     i++;
     totalComparisons++;
     println("HI", i);
+  } else if (isAnimating && sortingAlgo.equals("Binary Search") && i < list.arr.length) {
+    println("TESTING");
+    if (maxIndex >= minIndex) {
+      int midIndex = (maxIndex + minIndex) / 2;
+      i = midIndex+1;
+      println(minIndex, maxIndex, midIndex);
+      if (list.arr[midIndex] == list.searchValue) {
+        isAnimating = false;
+        indexFound = i;
+        button1.setText("Play");
+      }
+      else if (list.arr[midIndex] < list.searchValue) {
+        minIndex = midIndex+1;
+      }
+      else {
+        maxIndex = midIndex-1;
+      }
+      totalComparisons++;
+      println("HI", list.arr[midIndex]);
+    }
+  } else {
+    
   }
+  
+  list.displayBoxes();
   
   if (i != 0)
     list.drawPointer(i-1);
   else
     list.drawPointer(i);
-  //list.animateLinearSearch(list.arr, 9);
-  list.displayBoxes();
-  //list.drawPointer();
-  
-  fill(100);
-  rect(375, 300, 750, 2);
-  if (isWindowIncreased) {
-    rect(750, 200, 2, 400);
-    rect(750+screenIncreaseVal/2, 50, screenIncreaseVal, 2);
-    textSize(13);
-    fill(255);
-    if (sideDisplay.equals("code")) {
-      text("Code", (2*750+screenIncreaseVal)/2, 25);
-    } else if (sideDisplay.equals("help")) {
-      text("Help", (2*750+screenIncreaseVal)/2, 25);
-    }
-  }
-  
-  textSize(13);
-  fill(255);
-  text("Total Comparisions: " + totalComparisons, 375, 335);
-  text("Index Found: " + indexFound, 375, 360);
-  
-  fill(100);
-  rect(715, 335, 35, 35);
-  rect(665, 335, 35, 35);
-  rect(690, 380, 85, 35);
-  fill(255);
-  text("?", 715, 332);
-  text("</>", 665, 332);
-  text("Video Demo", 690, 378);
 }
