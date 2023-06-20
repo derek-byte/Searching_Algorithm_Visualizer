@@ -105,7 +105,7 @@ class BoxList {
     }
     
     println(sortingAlgo);
-    if (sortingAlgo.equals("Binary Search")) {
+    if (sortingAlgo.equals("Binary Search") || sortingAlgo.equals("Jump Search")) {
       println("HI");
       return mergeSort(this.arr, 0, this.arr.length-1);
     }

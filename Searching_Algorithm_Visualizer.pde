@@ -16,6 +16,7 @@ boolean isWindowIncreased = false;
 String sideDisplay;
 int screenIncreaseVal = 200;
 
+// Binary Search
 int maxIndex;
 int minIndex;
   
@@ -65,7 +66,7 @@ void draw() {
     println("TESTING");
     if (maxIndex >= minIndex) {
       int midIndex = (maxIndex + minIndex) / 2;
-      i = midIndex+1;
+      i = midIndex;
       println(minIndex, maxIndex, midIndex);
       if (list.arr[midIndex] == list.searchValue) {
         isAnimating = false;
@@ -81,13 +82,31 @@ void draw() {
       totalComparisons++;
       println("HI", list.arr[midIndex]);
     }
-  } else {
+  } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { // Jump Search
+    int jumpAmount = int(sqrt(list.arr.length));
+    println(list.arr[i]);
+    if (list.arr[i] == list.searchValue) {
+      println("HI",list.arr[i]);
+      isAnimating = false;
+      indexFound = i;
+      button1.setText("Play");
+    }
+    else if (list.arr[i] > list.searchValue) {
+      i--;
+    } else if (list.arr[i] < list.searchValue) {
+      i += jumpAmount;
+    }
     
+    if (i > list.arr.length-1) {
+      i = list.arr.length-1;
+    }
+   
+    totalComparisons++;
   }
   
   list.displayBoxes();
   
-  if (i != 0)
+  if (i != 0 && sortingAlgo.equals("Linear Search"))
     list.drawPointer(i-1);
   else
     list.drawPointer(i);

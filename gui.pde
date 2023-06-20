@@ -28,7 +28,7 @@ public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:398
 public void dropList1_click1(GDropList source, GEvent event) { //_CODE_:dropList1:641869:
   println("dropList1 - GDropList >> GEvent." + event + " @ " + millis());
   sortingAlgo = source.getSelectedText();
-  if (sortingAlgo.equals("Binary Search")) {
+  if (sortingAlgo.equals("Binary Search") || sortingAlgo.equals("Jump Search")) {
     list.arr = mergeSort(list.arr, 0, n-1);
   }
   i = 0;
