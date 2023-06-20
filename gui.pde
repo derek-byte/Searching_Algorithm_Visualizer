@@ -57,6 +57,8 @@ public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:5238
 
 public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:searchValue:391453:
   println("searchValue - GTextField >> GEvent." + event + " @ " + millis());
+  list.searchValue = int(source.getText());
+  println(list.searchValue);
 } //_CODE_:searchValue:391453:
 
 

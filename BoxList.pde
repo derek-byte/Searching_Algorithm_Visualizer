@@ -13,7 +13,13 @@ class BoxList {
   }
   
   void displayBoxes() {
-    int containerWidth = width - 2*this.padding;
+    int containerWidth;
+    if (isWindowIncreased) {
+      containerWidth = width - 2*this.padding - screenIncreaseVal;
+    }
+    else {
+      containerWidth = width - 2*this.padding;
+    }
     int boxWidth = containerWidth/this.n-3;
     
     textAlign(CENTER, CENTER);
@@ -51,7 +57,13 @@ class BoxList {
   }
   
   void drawPointer(int i) {
-    int containerWidth = width - 2*this.padding;
+    int containerWidth;
+    if (isWindowIncreased) {
+      containerWidth = width - 2*this.padding - screenIncreaseVal;
+    }
+    else {
+      containerWidth = width - 2*this.padding;
+    }
     int boxWidth = containerWidth/this.n-3;
     
     textAlign(CENTER, CENTER);
