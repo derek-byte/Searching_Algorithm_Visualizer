@@ -20,22 +20,24 @@ class BoxList {
       containerWidth = width - 2*this.padding;
     }
     int boxWidth = containerWidth/this.n-3;
-    
-    textAlign(CENTER, CENTER);
-    for (int i=0; i<n; i++) {
-      if (this.arr[i] == this.searchValue) 
-        fill(150);
-      else
+    printArray(this.arr);
+    try {
+      textAlign(CENTER, CENTER);
+      for (int i=0; i<this.n; i++) {
+        if (this.arr[i] == this.searchValue) 
+          fill(150);
+        else
+          fill(255);
+        textSize(13);
+        square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
+        fill(0);
+        text(this.arr[i], boxWidth/2+(boxWidth+3)*i+this.padding, 200);
+        
+        textSize(10);
         fill(255);
-      textSize(13);
-      square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
-      fill(0);
-      text(this.arr[i], boxWidth/2+(boxWidth+3)*i+this.padding, 200);
-      
-      textSize(10);
-      fill(255);
-      text(i, boxWidth/2+(boxWidth+3)*i+this.padding, 205+boxWidth/1.75);
-    }
+        text(i, boxWidth/2+(boxWidth+3)*i+this.padding, 205+boxWidth/1.75);
+      }
+    } catch(IndexOutOfBoundsException e) {}
   }
   
   void drawLegend() {
@@ -96,19 +98,20 @@ class BoxList {
   
   }
   
-  int[] generateRandomArray(int n) {
-    int[] arr = new int[n];
+  int[] generateRandomArray(int n) { // Fix this
+    int[] a = new int[n];
     for (int i=0; i<n; i++) {
-      arr[i] = int(random(1, 100));
+      a[i] = int(random(1, 100));
     }
     
     println(sortingAlgo);
+    //printArray(arr);
     if (sortingAlgo.equals("Binary Search") || sortingAlgo.equals("Jump Search")) {
       println("HI");
-      return mergeSort(this.arr, 0, this.arr.length-1);
+      return mergeSort(a, 0, a.length-1);
     }
     
-    return arr;
+    return a;
   }
   
   int getRandomValue(int[] arr) {

@@ -82,16 +82,16 @@ void draw() {
       totalComparisons++;
       println("HI", list.arr[midIndex]);
     }
-  } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { // Jump Search
+  } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { // Jump Search Fix this when searchValue = 0
     int jumpAmount = int(sqrt(list.arr.length));
-    println(list.arr[i]);
+    //println(list.arr[i]);
     if (list.arr[i] == list.searchValue) {
       println("HI",list.arr[i]);
       isAnimating = false;
       indexFound = i;
       button1.setText("Play");
     }
-    else if (list.arr[i] > list.searchValue) {
+    else if (i != 0 && list.arr[i] > list.searchValue) {
       i--;
     } else if (list.arr[i] < list.searchValue) {
       i += jumpAmount;

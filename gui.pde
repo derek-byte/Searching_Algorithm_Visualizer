@@ -25,6 +25,8 @@ public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:398
   //list = new BoxList(n);
   list.n = n;
   list.arr = list.generateRandomArray(n);
+  //printArray(list.arr);
+  //println(n, list.arr);
   list.searchValue = list.getRandomValue(list.arr);
 } //_CODE_:slider1:398259:
 
