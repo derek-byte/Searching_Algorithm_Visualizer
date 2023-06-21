@@ -7,7 +7,7 @@ int n = 15;
 int[] inputList = new int[n];
 String sortingAlgo;
 
-int frameRate = 2;
+float frameRate = 1;
 int i=0; 
 int totalComparisons;
 int indexFound;
@@ -110,4 +110,6 @@ void draw() {
     list.drawPointer(i-1);
   else
     list.drawPointer(i);
+    
+  //delay(1000);
 }

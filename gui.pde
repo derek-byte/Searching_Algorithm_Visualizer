@@ -20,9 +20,12 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
 
 public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:398259:
   println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
-  n = source.getValueI();
-  list = new BoxList(n);
   resetValues();
+  n = source.getValueI();
+  //list = new BoxList(n);
+  list.n = n;
+  list.arr = list.generateRandomArray(n);
+  list.searchValue = list.getRandomValue(list.arr);
 } //_CODE_:slider1:398259:
 
 public void dropList1_click1(GDropList source, GEvent event) { //_CODE_:dropList1:641869:

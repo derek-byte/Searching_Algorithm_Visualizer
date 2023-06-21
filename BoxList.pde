@@ -16,8 +16,7 @@ class BoxList {
     int containerWidth;
     if (isWindowIncreased) {
       containerWidth = width - 2*this.padding - screenIncreaseVal;
-    }
-    else {
+    } else {
       containerWidth = width - 2*this.padding;
     }
     int boxWidth = containerWidth/this.n-3;
@@ -60,8 +59,7 @@ class BoxList {
     int containerWidth;
     if (isWindowIncreased) {
       containerWidth = width - 2*this.padding - screenIncreaseVal;
-    }
-    else {
+    } else {
       containerWidth = width - 2*this.padding;
     }
     int boxWidth = containerWidth/this.n-3;

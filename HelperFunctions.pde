@@ -101,15 +101,20 @@ void displayButtonEvents() {
   if (isWindowIncreased) {
     rect(750, 200, 2, 400);
     rect(750+screenIncreaseVal/2, 50, screenIncreaseVal, 2);
-    textSize(13);
+    rect(750+screenIncreaseVal/2, 370, screenIncreaseVal, 2);
+    
     fill(255);
+    textSize(10);
+    text("Made by Derek Sheen@2023", 750+screenIncreaseVal/2, 385);
+    
+    textSize(13);
     if (sideDisplay.equals("code")) {
       text("Code", (2*750+screenIncreaseVal)/2, 25);
     } else if (sideDisplay.equals("help")) {
       text("Information", (2*750+screenIncreaseVal)/2, 25);
     }
   }
-  
+    
   textSize(13);
   fill(255);
   text("Total Comparisions: " + totalComparisons, 375, 335);
