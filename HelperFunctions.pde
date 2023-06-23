@@ -32,6 +32,22 @@ int binarySearch(int[] arr, int minIndex, int maxIndex, int search) {
   return -1;
 }
 
+//int jumpSearch() {
+//  int jumpAmount = int(sqrt(list.arr.length));
+//  if (list.arr[i] == list.searchValue) {
+//    return i;
+//  }
+//  else if (i != 0 && list.arr[i] > list.searchValue) {
+//    i--;
+//  } else if (list.arr[i] < list.searchValue) {
+//    i += jumpAmount;
+//  }
+  
+//  if (i > list.arr.length-1) {
+//    i = list.arr.length-1;
+//  }
+//}
+
 int [] mergeSort( int[] a, int start, int end ) {
    if (start == end) {
      int[] arr = {a[start]};
@@ -110,8 +126,10 @@ void displayButtonEvents() {
     textSize(13);
     if (sideDisplay.equals("code")) {
       text("Code", (2*750+screenIncreaseVal)/2, 25);
+      displayCode();
     } else if (sideDisplay.equals("help")) {
       text("Information", (2*750+screenIncreaseVal)/2, 25);
+      displayInformation();
     }
   }
     
@@ -128,6 +146,31 @@ void displayButtonEvents() {
   text("?", 715, 332);
   text("</>", 665, 332);
   text("Video Demo", 690, 378);
+}
+
+void displayInformation() {
+  //textAlign(RIGHT, CENTER);
+  textSize(10);
+  if (sortingAlgo.equals("Linear Search")) {
+    text("", (2*750+screenIncreaseVal)/2, 75);
+  } else if (sortingAlgo.equals("Binary Search")) {
+    text("STUFF1", (2*750+screenIncreaseVal)/2, 75);
+  } else if (sortingAlgo.equals("Jump Search")) {
+    text("STUFF2", (2*750+screenIncreaseVal)/2, 75);
+  }
+}
+
+void displayCode() {
+  //textAlign(RIGHT, CENTER);
+  textSize(10);
+  if (sortingAlgo.equals("Linear Search")) {
+    text("int linearSearch(int[] arr, int search) {", (2*750+screenIncreaseVal)/2, 75);
+    
+  } else if (sortingAlgo.equals("Binary Search")) {
+    text("STUFF1", (2*750+screenIncreaseVal)/2, 75);
+  } else if (sortingAlgo.equals("Jump Search")) {
+    text("STUFF2", (2*750+screenIncreaseVal)/2, 75);
+  }
 }
 
 void resetValues() {

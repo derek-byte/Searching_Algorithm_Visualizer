@@ -46,10 +46,6 @@ void draw() {
   background(125);
   textAlign(CENTER, CENTER);
   
-  createHeaders();
-  displayButtonEvents();
-  list.drawLegend();
-  
   if (isAnimating && sortingAlgo.equals("Linear Search") && i< list.arr.length) {
     //println(binarySearch(list.arr, 0, list.arr.length-1, list.searchValue));
     //println(linearSearch(list.arr, 9));
@@ -112,4 +108,7 @@ void draw() {
     list.drawPointer(i);
     
   //delay(1000);
+  createHeaders();
+  displayButtonEvents();
+  list.drawLegend();
 }
