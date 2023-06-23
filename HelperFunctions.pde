@@ -32,21 +32,30 @@ int binarySearch(int[] arr, int minIndex, int maxIndex, int search) {
   return -1;
 }
 
-//int jumpSearch() {
-//  int jumpAmount = int(sqrt(list.arr.length));
-//  if (list.arr[i] == list.searchValue) {
-//    return i;
-//  }
-//  else if (i != 0 && list.arr[i] > list.searchValue) {
-//    i--;
-//  } else if (list.arr[i] < list.searchValue) {
-//    i += jumpAmount;
-//  }
-  
-//  if (i > list.arr.length-1) {
-//    i = list.arr.length-1;
-//  }
-//}
+int jumpSearch(int[] arr, int search) {
+  int jumpAmount = int(sqrt(arr.length));
+  int i = 0;
+  int prev = 0;
+  while (arr[i] < search) {
+    prev = i;
+    i += jumpAmount;
+      if (i > arr.length-1) {
+      i = arr.length-1;
+    }
+    if (prev == i)
+      return -1;
+      
+    println(i, prev);
+  }
+  while (i > prev) {
+    println("BYT", i, prev);
+    if (arr[i] == search) {
+    return i;
+  }
+    i--;
+  }
+  return -1;
+}
 
 int [] mergeSort( int[] a, int start, int end ) {
    if (start == end) {
@@ -153,11 +162,36 @@ void displayInformation() {
   textAlign(LEFT, CENTER);
   textSize(10);
   if (sortingAlgo.equals("Linear Search")) {
-    text("", (2*750+screenIncreaseVal)/2, 75);
+    text("Linear Search (aka Sequential Search)", 760, 75);
+    text("- List DOES NOT need to be sorted", 760, 95);
+    text("- Iterate through the list until target value is found", 760, 115);
+    text("- Simplest searching algorithm", 760, 135);
+    text("- O(n)", 760, 155);
   } else if (sortingAlgo.equals("Binary Search")) {
-    text("STUFF1", (2*750+screenIncreaseVal)/2, 75);
+    text("Binary Search", 760, 75);
+    text("- List DOES need to be sorted", 760, 95);
+    text("- Compare the middle value of the list w/ target value", 760, 115);
+    text("- If it is the same, return the value", 770, 135);
+    text("- If mid value is smaller, disregard the right half w/ larger values", 770, 155);
+    text("  larger values", 770, 175);
+    text("- Focus on left half w/ smaller values", 780, 195);
+    text("- If mid value is larger, disregard the left half w/", 770, 215);
+    text("  smaller values", 770, 235);
+    text("- Focus on right half w/ larger values", 780, 255);
+    text("- Repeat the process above with the new list half", 760, 275);
+    text("- Repeatedly dividing the search interval in half", 760, 295);
+    text("- O(log₂n)", 760, 2315);
   } else if (sortingAlgo.equals("Jump Search")) {
-    text("STUFF2", (2*750+screenIncreaseVal)/2, 75);
+    text("Jump Search", 760, 75);
+    text("- List DOES NOT need to be sorted", 760, 95);
+    text("- Checks fewer elements than linear search", 760, 115);
+    text("- Jumping ahead by fixed steps instead of searching", 760, 135);
+    text("  all elements", 760, 155);
+    text("- Once the step element is larger than the target value", 760, 175);
+    text("- Move backwards until target value is found or we", 760, 195);
+    text("  reach the previous step element", 760, 215);
+    text("- Means target element not in list", 770, 235);
+    text("-  O(√n)", 760, 255);
   }
 }
 
@@ -175,23 +209,6 @@ void displayCode() {
     text("}", 760, 215);
     //image(linearSearchImg, 750, 75, 200, 180);
   } else if (sortingAlgo.equals("Binary Search")) {
-    //int binarySearch(int[] arr, int minIndex, int maxIndex, int search) { 
-    //  if (maxIndex >= minIndex) {
-    //    int midIndex = (maxIndex + minIndex) / 2;
-    //    println(minIndex, maxIndex, midIndex);
-    //    if (arr[midIndex] == search) {
-    //      return midIndex;
-    //    }
-    //    else if (arr[midIndex] < search) {
-    //      return binarySearch(arr, midIndex+1, maxIndex, search);
-    //    }
-    //    else {
-    //      return binarySearch(arr, minIndex, midIndex-1, search);
-    //    }
-    //  }
-      
-    //  return -1;
-    //}
     text("int binarySearch(int[] a, int min, int max, int s) { ", 760, 75);
     text("if (max >= min) {", 770, 95);
     text("int mid = (max + min) / 2;", 780, 115);

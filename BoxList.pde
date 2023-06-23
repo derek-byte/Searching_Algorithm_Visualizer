@@ -20,7 +20,6 @@ class BoxList {
       containerWidth = width - 2*this.padding;
     }
     int boxWidth = containerWidth/this.n-3;
-    printArray(this.arr);
     try {
       textAlign(CENTER, CENTER);
       for (int i=0; i<this.n; i++) {
@@ -87,7 +86,6 @@ class BoxList {
         break;
         //return i;
       }
-      println("HI");
     }
     //redraw();
     

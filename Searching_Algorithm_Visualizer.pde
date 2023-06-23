@@ -20,12 +20,13 @@ int screenIncreaseVal = 275;
 int maxIndex;
 int minIndex;
 
-PImage linearSearchImg;
-PImage binarySearchImg;
-PImage jumpSearchImg;
+int prevStep;
   
 void setup() {
   createGUI();
+  
+  int[] arr = {1, 2, 4, 6,8, 9};
+  println(jumpSearch(arr, 5));
   
   isAnimating = false;
   sortingAlgo = "Linear Search";
@@ -43,9 +44,7 @@ void setup() {
   
   maxIndex = list.arr.length;
   minIndex = 0;
-  
-  linearSearchImg = loadImage("linearSearch.png");
-  binarySearchImg = loadImage("binarySearch.png");
+  prevStep = 0;
 }
 
 void draw() {
@@ -64,13 +63,10 @@ void draw() {
     }
     i++;
     totalComparisons++;
-    println("HI", i);
   } else if (isAnimating && sortingAlgo.equals("Binary Search") && i < list.arr.length) {
-    println("TESTING");
     if (maxIndex >= minIndex) {
       int midIndex = (maxIndex + minIndex) / 2;
       i = midIndex;
-      println(minIndex, maxIndex, midIndex);
       if (list.arr[midIndex] == list.searchValue) {
         isAnimating = false;
         indexFound = i;
@@ -83,10 +79,15 @@ void draw() {
         maxIndex = midIndex-1;
       }
       totalComparisons++;
-      println("HI", list.arr[midIndex]);
     }
   } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { // Jump Search Fix this when searchValue = 0
     int jumpAmount = int(sqrt(list.arr.length));
+    println(list.arr[prevStep], list.arr[i]);
+    if (prevStep != 0 && list.arr[prevStep] == list.arr[i-1]) {
+      isAnimating = false;
+      indexFound = -1;
+      button1.setText("Play");
+    }
     //println(list.arr[i]);
     if (list.arr[i] == list.searchValue) {
       println("HI",list.arr[i]);
@@ -97,11 +98,11 @@ void draw() {
     else if (i != 0 && list.arr[i] > list.searchValue) {
       i--;
     } else if (list.arr[i] < list.searchValue) {
+      prevStep = i;
       i += jumpAmount;
-    }
-    
-    if (i > list.arr.length-1) {
-      i = list.arr.length-1;
+      if (i > list.arr.length-1) {
+        i = list.arr.length-1;
+      }
     }
    
     totalComparisons++;
