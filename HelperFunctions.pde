@@ -132,7 +132,8 @@ void displayButtonEvents() {
       displayInformation();
     }
   }
-    
+  
+  textAlign(CENTER, CENTER); 
   textSize(13);
   fill(255);
   text("Total Comparisions: " + totalComparisons, 375, 335);
@@ -149,7 +150,7 @@ void displayButtonEvents() {
 }
 
 void displayInformation() {
-  //textAlign(RIGHT, CENTER);
+  textAlign(LEFT, CENTER);
   textSize(10);
   if (sortingAlgo.equals("Linear Search")) {
     text("", (2*750+screenIncreaseVal)/2, 75);
@@ -161,13 +162,53 @@ void displayInformation() {
 }
 
 void displayCode() {
-  //textAlign(RIGHT, CENTER);
+  textAlign(LEFT, CENTER);
   textSize(10);
   if (sortingAlgo.equals("Linear Search")) {
-    text("int linearSearch(int[] arr, int search) {", (2*750+screenIncreaseVal)/2, 75);
-    
+    text("int linearSearch(int[] arr, int search) {", 760, 75);
+    text("for (int i=0; i<arr.length; i++) {", 770, 95);
+    text("if (arr[i] == search) {", 780, 115);
+    text("return i;", 790, 135);
+    text("}", 780, 155);
+    text("}", 770, 175);
+    text("return -1;", 770, 195);
+    text("}", 760, 215);
+    //image(linearSearchImg, 750, 75, 200, 180);
   } else if (sortingAlgo.equals("Binary Search")) {
-    text("STUFF1", (2*750+screenIncreaseVal)/2, 75);
+    //int binarySearch(int[] arr, int minIndex, int maxIndex, int search) { 
+    //  if (maxIndex >= minIndex) {
+    //    int midIndex = (maxIndex + minIndex) / 2;
+    //    println(minIndex, maxIndex, midIndex);
+    //    if (arr[midIndex] == search) {
+    //      return midIndex;
+    //    }
+    //    else if (arr[midIndex] < search) {
+    //      return binarySearch(arr, midIndex+1, maxIndex, search);
+    //    }
+    //    else {
+    //      return binarySearch(arr, minIndex, midIndex-1, search);
+    //    }
+    //  }
+      
+    //  return -1;
+    //}
+    text("int binarySearch(int[] a, int min, int max, int s) { ", 760, 75);
+    text("if (max >= min) {", 770, 95);
+    text("int mid = (max + min) / 2;", 780, 115);
+    
+    text("if (a[mid] == s) {", 780, 135);
+    text("return mid;", 790, 155);
+    
+    text("} else if (a[mid] < s) {", 780, 175);
+    text("return binarySearch(a, mid+1, max, s);", 790, 195);
+    
+    text("} else {", 780, 215);
+    text("return binarySearch(a, min, mid-1, s);", 790, 235);
+    text("}", 780, 255);
+    
+    text("}", 770, 275);
+    text("return -1;", 770, 295);
+    text("}", 760, 315);
   } else if (sortingAlgo.equals("Jump Search")) {
     text("STUFF2", (2*750+screenIncreaseVal)/2, 75);
   }

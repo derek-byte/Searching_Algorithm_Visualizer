@@ -14,11 +14,15 @@ int indexFound;
 
 boolean isWindowIncreased = false;
 String sideDisplay;
-int screenIncreaseVal = 200;
+int screenIncreaseVal = 275;
 
 // Binary Search
 int maxIndex;
 int minIndex;
+
+PImage linearSearchImg;
+PImage binarySearchImg;
+PImage jumpSearchImg;
   
 void setup() {
   createGUI();
@@ -39,6 +43,9 @@ void setup() {
   
   maxIndex = list.arr.length;
   minIndex = 0;
+  
+  linearSearchImg = loadImage("linearSearch.png");
+  binarySearchImg = loadImage("binarySearch.png");
 }
 
 void draw() {
