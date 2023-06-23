@@ -32,31 +32,6 @@ int binarySearch(int[] arr, int minIndex, int maxIndex, int search) {
   return -1;
 }
 
-int jumpSearch(int[] arr, int search) {
-  int jumpAmount = int(sqrt(arr.length));
-  int i = 0;
-  int prev = 0;
-  while (arr[i] < search) {
-    prev = i;
-    i += jumpAmount;
-      if (i > arr.length-1) {
-      i = arr.length-1;
-    }
-    if (prev == i)
-      return -1;
-      
-    println(i, prev);
-  }
-  while (i > prev) {
-    println("BYT", i, prev);
-    if (arr[i] == search) {
-    return i;
-  }
-    i--;
-  }
-  return -1;
-}
-
 int [] mergeSort( int[] a, int start, int end ) {
    if (start == end) {
      int[] arr = {a[start]};
@@ -183,7 +158,7 @@ void displayInformation() {
     text("- O(log₂n)", 760, 2315);
   } else if (sortingAlgo.equals("Jump Search")) {
     text("Jump Search", 760, 75);
-    text("- List DOES NOT need to be sorted", 760, 95);
+    text("- List DOES need to be sorted", 760, 95);
     text("- Checks fewer elements than linear search", 760, 115);
     text("- Jumping ahead by fixed steps instead of searching", 760, 135);
     text("  all elements", 760, 155);
@@ -227,8 +202,55 @@ void displayCode() {
     text("return -1;", 770, 295);
     text("}", 760, 315);
   } else if (sortingAlgo.equals("Jump Search")) {
-    text("STUFF2", (2*750+screenIncreaseVal)/2, 75);
+    text("int jumpSearch(int[] arr, int search) {", 760, 75);
+    text("int jumpAmount = int(sqrt(arr.length));", 770, 90);
+    text("int i = 0;", 770, 105);
+    text("int prev = 0;", 770, 120);
+    text("while (arr[i] < search) {", 780, 135);
+    
+    text("prev = i;", 780, 150);
+    text("i += jumpAmount;", 780, 165);
+    text("if (i > arr.length-1) {", 780, 180);
+    text("i = arr.length-1;", 790, 195);
+    text("}", 780, 205);
+    
+    text("if (prev == i)", 780, 220);
+    text("return -1;", 790, 235);
+    text("}", 780, 250);
+    
+    text("while (i > prev) {", 780, 265);
+    text("if (arr[i] == search) ", 790, 280);
+    text("return i;", 800, 295);
+    
+    text("i--;", 790, 305);
+    text("}", 780, 320);
+    
+    text("return -1;", 780, 335);
+    text("}", 770, 350);
   }
+}
+
+int jumpSearch(int[] arr, int search) {
+  int jumpAmount = int(sqrt(arr.length));
+  int i = 0;
+  int prev = 0;
+  while (arr[i] < search) {
+    prev = i;
+    i += jumpAmount;
+    if (i > arr.length-1) {
+      i = arr.length-1;
+    }
+    if (prev == i)
+      return -1;
+      
+  }
+  while (i > prev) {
+    if (arr[i] == search) {
+    return i;
+  }
+    i--;
+  }
+  return -1;
 }
 
 void resetValues() {

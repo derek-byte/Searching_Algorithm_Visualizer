@@ -82,27 +82,30 @@ void draw() {
     }
   } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { // Jump Search Fix this when searchValue = 0
     int jumpAmount = int(sqrt(list.arr.length));
-    println(list.arr[prevStep], list.arr[i]);
-    if (prevStep != 0 && list.arr[prevStep] == list.arr[i-1]) {
-      isAnimating = false;
-      indexFound = -1;
-      button1.setText("Play");
-    }
-    //println(list.arr[i]);
-    if (list.arr[i] == list.searchValue) {
-      println("HI",list.arr[i]);
-      isAnimating = false;
-      indexFound = i;
-      button1.setText("Play");
-    }
-    else if (i != 0 && list.arr[i] > list.searchValue) {
-      i--;
-    } else if (list.arr[i] < list.searchValue) {
+    
+    if (list.arr[i] < list.searchValue) {
       prevStep = i;
       i += jumpAmount;
       if (i > list.arr.length-1) {
         i = list.arr.length-1;
       }
+      if (prevStep == i)
+        isAnimating = false;
+        indexFound = -1;
+        button1.setText("Play");
+        
+    } else if (i > prevStep) {
+      if (list.arr[i] == list.searchValue) {
+        isAnimating = false;
+        indexFound = i;
+        button1.setText("Play");
+      } else {
+        i--;
+      }
+    } else {
+      isAnimating = false;
+      indexFound = -1;
+      button1.setText("Play");
     }
    
     totalComparisons++;

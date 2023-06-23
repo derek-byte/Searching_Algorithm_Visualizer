@@ -76,25 +76,25 @@ class BoxList {
     triangle(boxWidth/2+(boxWidth+3)*i+this.padding-15, 160, boxWidth/2+(boxWidth+3)*i+this.padding+15, 160, boxWidth/2+(boxWidth+3)*i+this.padding, 175);
   }
   
-  void animateLinearSearch(int[] arr, int search) {
-    for (int i=0; i<arr.length; i++) {
-      displayBoxes();
-      drawPointer(i);
-      delay(500);
-      if (arr[i] == search) {
-        isAnimating = false;
-        break;
-        //return i;
-      }
-    }
-    //redraw();
+  //void animateLinearSearch(int[] arr, int search) {
+  //  for (int i=0; i<arr.length; i++) {
+  //    displayBoxes();
+  //    drawPointer(i);
+  //    delay(500);
+  //    if (arr[i] == search) {
+  //      isAnimating = false;
+  //      break;
+  //      //return i;
+  //    }
+  //  }
+  //  //redraw();
     
-    //return -1;
-  }
+  //  //return -1;
+  //}
   
-  void animateBinarySearch(int[] arr, int currValue, int midValue) {
+  //void animateBinarySearch(int[] arr, int currValue, int midValue) {
   
-  }
+  //}
   
   int[] generateRandomArray(int n) { // Fix this
     int[] a = new int[n];
