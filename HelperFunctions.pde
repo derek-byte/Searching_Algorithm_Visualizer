@@ -204,7 +204,7 @@ void displayCode() {
 void resetValues() { // Resets the values 
   i = 0;
   minIndex = 0;
-  maxIndex = list.arr.length;
+  maxIndex = list.arr.length-1;
   totalComparisons = 0;
   indexFound = -1;
   isBackwards = false;

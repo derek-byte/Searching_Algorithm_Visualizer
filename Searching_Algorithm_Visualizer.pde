@@ -37,7 +37,7 @@ void setup() {
   list = new BoxList(n);
   
   totalComparisons = 0;
-  maxIndex = list.arr.length;
+  maxIndex = list.arr.length-1;
   minIndex = 0;
   prevStep = 0;
   sideDisplay = "";
@@ -85,6 +85,10 @@ void draw() {
         maxIndex = midIndex-1;
       }
       totalComparisons++;
+    } else {
+      isAnimating = false;
+      indexFound = -1;
+      button1.setText("Play");
     }
   } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) {     
     if (list.arr[i] < list.searchValue && !isBackwards) {
