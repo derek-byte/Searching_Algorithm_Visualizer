@@ -121,5 +121,4 @@ void draw() {
     
   createHeaders();
   displayButtonEvents();
-  list.drawLegend();
 }

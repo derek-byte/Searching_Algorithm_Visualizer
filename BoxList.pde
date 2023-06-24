@@ -40,24 +40,7 @@ class BoxList {
       }
     } catch(IndexOutOfBoundsException e) {}
   }
-  
-  void drawLegend() {
-    // Legend 
-    textAlign(LEFT, CENTER);
-    textSize(10);
-    rect(600, 20, 25, 10);
-    text("Comparing Value", 625, 20);
-    rect(600, 31, 25, 10);
-    text("Not Value", 625, 30);
-    rect(600, 42, 25, 10);
-    text("Yes Value", 625, 40);
-    
-    if (sortingAlgo.equals("Binary Search")) {
-      rect(600, 53, 25, 10);
-      text("Disregarded Values", 625, 50);
-    }
-  }
-  
+
   void drawPointer(int i) {
     int containerWidth;
     if (isWindowIncreased) {
