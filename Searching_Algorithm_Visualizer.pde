@@ -4,7 +4,7 @@ BoxList list;
 boolean isAnimating;
 
 int n = 15; // Default Array Size
-float frameRate = 1;
+float frameRate = 2;
 int screenIncreaseVal = 275; // Sidebar width
 
 // Colours 
@@ -27,6 +27,7 @@ int minIndex;
 // Jump Search
 int prevStep;
 boolean isBackwards;
+int jumpAmount;
 
 void setup() {
   createGUI();
@@ -44,6 +45,7 @@ void setup() {
   isWindowIncreased = false;
   isBackwards = false;
   i=0;
+  jumpAmount = int(sqrt(list.arr.length));
     
   size(750, 400);
   rectMode(CENTER);
@@ -63,8 +65,10 @@ void draw() {
       indexFound = i;
       button1.setText("Play");
     }
-    i++;
-    totalComparisons++;
+    if (indexFound == -1) {
+      totalComparisons++;
+      i++;
+    }
   } else if (isAnimating && sortingAlgo.equals("Binary Search") && i < list.arr.length) { // Binary Search Animation
     if (maxIndex >= minIndex) {
       int midIndex = (maxIndex + minIndex) / 2;
@@ -82,9 +86,7 @@ void draw() {
       }
       totalComparisons++;
     }
-  } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { 
-    int jumpAmount = int(sqrt(list.arr.length));
-    
+  } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) {     
     if (list.arr[i] < list.searchValue && !isBackwards) {
       prevStep = i;
       i += jumpAmount;
@@ -115,11 +117,7 @@ void draw() {
   }
   
   list.displayBoxes();
-  
-  if (i != 0 && sortingAlgo.equals("Linear Search"))
-    list.drawPointer(i-1);
-  else
-    list.drawPointer(i);
+  list.drawPointer(i);
     
   createHeaders();
   displayButtonEvents();

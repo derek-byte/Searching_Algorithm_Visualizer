@@ -208,4 +208,5 @@ void resetValues() { // Resets the values
   totalComparisons = 0;
   indexFound = -1;
   isBackwards = false;
+  jumpAmount = int(sqrt(list.arr.length));
 }

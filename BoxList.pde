@@ -22,19 +22,21 @@ class BoxList {
     int boxWidth = containerWidth/this.n-3;
     try {
       textAlign(CENTER, CENTER);
-      for (int i=0; i<this.n; i++) {
-        if (this.arr[i] == this.searchValue) 
+      for (int j=0; j<this.n; j++) {
+        if (i == j && isAnimating)
+          fill(245);
+        else if (this.arr[j] == this.searchValue) 
           fill(245);
         else
           fill(boxBackground);
         textSize(13);
-        square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
+        square(boxWidth/2+(boxWidth+3)*j+this.padding, 200, boxWidth);
         fill(0);
-        text(this.arr[i], boxWidth/2+(boxWidth+3)*i+this.padding, 200);
+        text(this.arr[j], boxWidth/2+(boxWidth+3)*j+this.padding, 200);
         
         textSize(10);
         fill(255);
-        text(i, boxWidth/2+(boxWidth+3)*i+this.padding, 205+boxWidth/1.75);
+        text(j, boxWidth/2+(boxWidth+3)*j+this.padding, 205+boxWidth/1.75);
       }
     } catch(IndexOutOfBoundsException e) {}
   }
@@ -72,7 +74,7 @@ class BoxList {
     triangle(boxWidth/2+(boxWidth+3)*i+this.padding-15, 160-boxWidth/4, boxWidth/2+(boxWidth+3)*i+this.padding+15, 160-boxWidth/4, boxWidth/2+(boxWidth+3)*i+this.padding, 175-boxWidth/4);
   }
   
-  int[] generateRandomArray(int n) { // Fix this
+  int[] generateRandomArray(int n) { 
     int[] a = new int[n];
     for (int i=0; i<n; i++) {
       a[i] = int(random(1, 100));
@@ -80,7 +82,6 @@ class BoxList {
     
     println(sortingAlgo);
     if (sortingAlgo.equals("Binary Search") || sortingAlgo.equals("Jump Search")) {
-      println("HI");
       return mergeSort(a, 0, a.length-1);
     }
     
