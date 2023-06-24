@@ -1,37 +1,3 @@
-int linearSearch(int[] arr, int search) {
-  for (int i=0; i<arr.length; i++) {
-    list.displayBoxes();
-    list.drawPointer(i);
-    delay(1000);
-    if (arr[i] == search) {
-      isAnimating = false;
-      return i;
-    }
-    println("HI");
-  }
-  redraw();
-  
-  return -1;
-}
-
-int binarySearch(int[] arr, int minIndex, int maxIndex, int search) { 
-  if (maxIndex >= minIndex) {
-    int midIndex = (maxIndex + minIndex) / 2;
-    println(minIndex, maxIndex, midIndex);
-    if (arr[midIndex] == search) {
-      return midIndex;
-    }
-    else if (arr[midIndex] < search) {
-      return binarySearch(arr, midIndex+1, maxIndex, search);
-    }
-    else {
-      return binarySearch(arr, minIndex, midIndex-1, search);
-    }
-  }
-  
-  return -1;
-}
-
 int [] mergeSort( int[] a, int start, int end ) {
    if (start == end) {
      int[] arr = {a[start]};
@@ -85,19 +51,19 @@ void createHeaders() {
   textSize(16);
   text("Searching Algorithm Visualizer", 135, 25); // Title
   
-  fill(100);
-  rect(375, 90, 300, 70);
-  
+  // Display target Value
   textSize(18);
   fill(255);
-  text(sortingAlgo, 375, 80);
+  text(sortingAlgo, 375, 70);
   textSize(12);
-  text("Search Value: " + list.searchValue, 375, 100);
+  text("Search Value: " + list.searchValue, 375, 90); 
 }
 
 void displayButtonEvents() {
-  fill(100);
+  fill(lineBackground); // Divider
   rect(375, 300, 750, 2);
+  
+  // Sidebar
   if (isWindowIncreased) {
     rect(750, 200, 2, 400);
     rect(750+screenIncreaseVal/2, 50, screenIncreaseVal, 2);
@@ -109,10 +75,10 @@ void displayButtonEvents() {
     
     textSize(13);
     if (sideDisplay.equals("code")) {
-      text("Code", (2*750+screenIncreaseVal)/2, 25);
+      text("Code", (2*750+screenIncreaseVal)/2, 25); // Display code information
       displayCode();
     } else if (sideDisplay.equals("help")) {
-      text("Information", (2*750+screenIncreaseVal)/2, 25);
+      text("Information", (2*750+screenIncreaseVal)/2, 25); // Display searching algorithm information
       displayInformation();
     }
   }
@@ -120,10 +86,15 @@ void displayButtonEvents() {
   textAlign(CENTER, CENTER); 
   textSize(13);
   fill(255);
-  text("Total Comparisions: " + totalComparisons, 375, 335);
-  text("Index Found: " + indexFound, 375, 360);
+  text("Total Comparisions: " + totalComparisons, 375, 335); // # of comparisons
   
-  fill(100);
+  if (indexFound == -1) // If no target value index is found
+    text("Index Not Found", 375, 360);
+  else // Display what index target value is
+    text("Index Found: " + indexFound, 375, 360);
+  
+  // Buttons
+  fill(buttonBackground);
   rect(715, 335, 35, 35);
   rect(665, 335, 35, 35);
   rect(690, 380, 85, 35);
@@ -136,13 +107,13 @@ void displayButtonEvents() {
 void displayInformation() {
   textAlign(LEFT, CENTER);
   textSize(10);
-  if (sortingAlgo.equals("Linear Search")) {
+  if (sortingAlgo.equals("Linear Search")) { // Linear Search Information
     text("Linear Search (aka Sequential Search)", 760, 75);
     text("- List DOES NOT need to be sorted", 760, 95);
     text("- Iterate through the list until target value is found", 760, 115);
     text("- Simplest searching algorithm", 760, 135);
     text("- O(n)", 760, 155);
-  } else if (sortingAlgo.equals("Binary Search")) {
+  } else if (sortingAlgo.equals("Binary Search")) { // Binary Search Information
     text("Binary Search", 760, 75);
     text("- List DOES need to be sorted", 760, 95);
     text("- Compare the middle value of the list w/ target value", 760, 115);
@@ -156,7 +127,7 @@ void displayInformation() {
     text("- Repeat the process above with the new list half", 760, 275);
     text("- Repeatedly dividing the search interval in half", 760, 295);
     text("- O(log₂n)", 760, 2315);
-  } else if (sortingAlgo.equals("Jump Search")) {
+  } else if (sortingAlgo.equals("Jump Search")) { // Jump Search Information
     text("Jump Search", 760, 75);
     text("- List DOES need to be sorted", 760, 95);
     text("- Checks fewer elements than linear search", 760, 115);
@@ -173,7 +144,7 @@ void displayInformation() {
 void displayCode() {
   textAlign(LEFT, CENTER);
   textSize(10);
-  if (sortingAlgo.equals("Linear Search")) {
+  if (sortingAlgo.equals("Linear Search")) { // Linear Search Code
     text("int linearSearch(int[] arr, int search) {", 760, 75);
     text("for (int i=0; i<arr.length; i++) {", 770, 95);
     text("if (arr[i] == search) {", 780, 115);
@@ -183,7 +154,7 @@ void displayCode() {
     text("return -1;", 770, 195);
     text("}", 760, 215);
     //image(linearSearchImg, 750, 75, 200, 180);
-  } else if (sortingAlgo.equals("Binary Search")) {
+  } else if (sortingAlgo.equals("Binary Search")) { // Binary Search Code
     text("int binarySearch(int[] a, int min, int max, int s) { ", 760, 75);
     text("if (max >= min) {", 770, 95);
     text("int mid = (max + min) / 2;", 780, 115);
@@ -201,7 +172,7 @@ void displayCode() {
     text("}", 770, 275);
     text("return -1;", 770, 295);
     text("}", 760, 315);
-  } else if (sortingAlgo.equals("Jump Search")) {
+  } else if (sortingAlgo.equals("Jump Search")) { // Jump Search Code
     text("int jumpSearch(int[] arr, int search) {", 760, 75);
     text("int jumpAmount = int(sqrt(arr.length));", 770, 90);
     text("int i = 0;", 770, 105);
@@ -230,33 +201,11 @@ void displayCode() {
   }
 }
 
-int jumpSearch(int[] arr, int search) {
-  int jumpAmount = int(sqrt(arr.length));
-  int i = 0;
-  int prev = 0;
-  while (arr[i] < search) {
-    prev = i;
-    i += jumpAmount;
-    if (i > arr.length-1) {
-      i = arr.length-1;
-    }
-    if (prev == i)
-      return -1;
-      
-  }
-  while (i > prev) {
-    if (arr[i] == search) {
-    return i;
-  }
-    i--;
-  }
-  return -1;
-}
-
-void resetValues() {
+void resetValues() { // Resets the values 
   i = 0;
   minIndex = 0;
   maxIndex = list.arr.length;
   totalComparisons = 0;
   indexFound = -1;
+  isBackwards = false;
 }

@@ -22,11 +22,8 @@ public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:398
   println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
   resetValues();
   n = source.getValueI();
-  //list = new BoxList(n);
   list.n = n;
   list.arr = list.generateRandomArray(n);
-  //printArray(list.arr);
-  //println(n, list.arr);
   list.searchValue = list.getRandomValue(list.arr);
 } //_CODE_:slider1:398259:
 
@@ -37,17 +34,19 @@ public void dropList1_click1(GDropList source, GEvent event) { //_CODE_:dropList
     list.arr = mergeSort(list.arr, 0, n-1);
   }
   i = 0;
+  isAnimating = false;
+  button1.setText("Play");
 } //_CODE_:dropList1:641869:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:438206:
   println("button1 - GButton >> GEvent." + event + " @ " + millis());
   if (!isAnimating) {
-    source.setText("Pause");
-    resetValues();
+    source.setText("Reset");
   } else {
     source.setText("Play");
   }
-    
+  
+  resetValues();
   isAnimating = !isAnimating;
 } //_CODE_:button1:438206:
 
@@ -61,7 +60,7 @@ public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:5238
 public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:searchValueInput:391453:
   println("searchValue - GTextField >> GEvent." + event + " @ " + millis());
   list.searchValue = int(source.getText());
-  println(list.searchValue);
+  resetValues();
 } //_CODE_:searchValueInput:391453:
 
 

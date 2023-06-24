@@ -3,67 +3,69 @@ import g4p_controls.*;
 BoxList list;
 boolean isAnimating;
 
-int n = 15;
-int[] inputList = new int[n];
-String sortingAlgo;
-
+int n = 15; // Default Array Size
 float frameRate = 1;
-int i=0; 
+int screenIncreaseVal = 275; // Sidebar width
+
+// Colours 
+color background = color(85);
+color boxBackground = color(195);
+color lineBackground = color(100);
+color buttonBackground = color(100);
+
+String sortingAlgo;
+int i;
 int totalComparisons;
 int indexFound;
-
-boolean isWindowIncreased = false;
 String sideDisplay;
-int screenIncreaseVal = 275;
+boolean isWindowIncreased;
 
 // Binary Search
 int maxIndex;
 int minIndex;
 
+// Jump Search
 int prevStep;
-  
+boolean isBackwards;
+
 void setup() {
   createGUI();
-  
-  int[] arr = {1, 2, 4, 6,8, 9};
-  println(jumpSearch(arr, 5));
   
   isAnimating = false;
   sortingAlgo = "Linear Search";
   list = new BoxList(n);
   
   totalComparisons = 0;
-  //sideDisplay = "";
+  maxIndex = list.arr.length;
+  minIndex = 0;
+  prevStep = 0;
+  sideDisplay = "";
+  indexFound = -1;
+  isWindowIncreased = false;
+  isBackwards = false;
+  i=0;
     
   size(750, 400);
   rectMode(CENTER);
   
-  frameRate(2);
+  frameRate(frameRate);
   frame.setResizable(true);
-  //noLoop();
-  
-  maxIndex = list.arr.length;
-  minIndex = 0;
-  prevStep = 0;
 }
 
 void draw() {
   noStroke();
-  background(125);
+  background(background);
   textAlign(CENTER, CENTER);
   
-  if (isAnimating && sortingAlgo.equals("Linear Search") && i< list.arr.length) {
-    //println(binarySearch(list.arr, 0, list.arr.length-1, list.searchValue));
-    //println(linearSearch(list.arr, 9));
+  if (isAnimating && sortingAlgo.equals("Linear Search") && i < list.arr.length) { // Linear Search Animation
     if (list.arr[i] == list.searchValue) {
       isAnimating = false;
       indexFound = i;
       button1.setText("Play");
-      //return i;
     }
     i++;
     totalComparisons++;
-  } else if (isAnimating && sortingAlgo.equals("Binary Search") && i < list.arr.length) {
+  } else if (isAnimating && sortingAlgo.equals("Binary Search") && i < list.arr.length) { // Binary Search Animation
     if (maxIndex >= minIndex) {
       int midIndex = (maxIndex + minIndex) / 2;
       i = midIndex;
@@ -80,10 +82,10 @@ void draw() {
       }
       totalComparisons++;
     }
-  } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { // Jump Search Fix this when searchValue = 0
+  } else if (isAnimating && sortingAlgo.equals("Jump Search") && i < list.arr.length) { 
     int jumpAmount = int(sqrt(list.arr.length));
     
-    if (list.arr[i] < list.searchValue) {
+    if (list.arr[i] < list.searchValue && !isBackwards) {
       prevStep = i;
       i += jumpAmount;
       if (i > list.arr.length-1) {
@@ -93,8 +95,8 @@ void draw() {
         isAnimating = false;
         indexFound = -1;
         button1.setText("Play");
-        
     } else if (i > prevStep) {
+      isBackwards = true;
       if (list.arr[i] == list.searchValue) {
         isAnimating = false;
         indexFound = i;
@@ -107,8 +109,9 @@ void draw() {
       indexFound = -1;
       button1.setText("Play");
     }
-   
-    totalComparisons++;
+    
+    if (indexFound == -1)
+      totalComparisons++;
   }
   
   list.displayBoxes();
@@ -118,7 +121,6 @@ void draw() {
   else
     list.drawPointer(i);
     
-  //delay(1000);
   createHeaders();
   displayButtonEvents();
   list.drawLegend();

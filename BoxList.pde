@@ -24,9 +24,9 @@ class BoxList {
       textAlign(CENTER, CENTER);
       for (int i=0; i<this.n; i++) {
         if (this.arr[i] == this.searchValue) 
-          fill(150);
+          fill(245);
         else
-          fill(255);
+          fill(boxBackground);
         textSize(13);
         square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
         fill(0);
@@ -67,34 +67,10 @@ class BoxList {
     
     textAlign(CENTER, CENTER);
     
-    //square(boxWidth/2+(boxWidth+3)*i+this.padding, 200, boxWidth);
-    
-    //noStroke();
     fill(255);
-    // x=120
-    rect(boxWidth/2+(boxWidth+3)*i+this.padding, 150, 15, 25);
-    triangle(boxWidth/2+(boxWidth+3)*i+this.padding-15, 160, boxWidth/2+(boxWidth+3)*i+this.padding+15, 160, boxWidth/2+(boxWidth+3)*i+this.padding, 175);
+    rect(boxWidth/2+(boxWidth+3)*i+this.padding, 150-boxWidth/4, 15, 25);
+    triangle(boxWidth/2+(boxWidth+3)*i+this.padding-15, 160-boxWidth/4, boxWidth/2+(boxWidth+3)*i+this.padding+15, 160-boxWidth/4, boxWidth/2+(boxWidth+3)*i+this.padding, 175-boxWidth/4);
   }
-  
-  //void animateLinearSearch(int[] arr, int search) {
-  //  for (int i=0; i<arr.length; i++) {
-  //    displayBoxes();
-  //    drawPointer(i);
-  //    delay(500);
-  //    if (arr[i] == search) {
-  //      isAnimating = false;
-  //      break;
-  //      //return i;
-  //    }
-  //  }
-  //  //redraw();
-    
-  //  //return -1;
-  //}
-  
-  //void animateBinarySearch(int[] arr, int currValue, int midValue) {
-  
-  //}
   
   int[] generateRandomArray(int n) { // Fix this
     int[] a = new int[n];
@@ -103,7 +79,6 @@ class BoxList {
     }
     
     println(sortingAlgo);
-    //printArray(arr);
     if (sortingAlgo.equals("Binary Search") || sortingAlgo.equals("Jump Search")) {
       println("HI");
       return mergeSort(a, 0, a.length-1);
